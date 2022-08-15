@@ -5,8 +5,11 @@ Summary:        Fast, correct Python JSON library supporting dataclasses, dateti
 License:        Apache-2.0, MIT 
 Group:          Development/Languages/Python
 URL:            https://github.com/ijl/orjson/
-Source:         https://github.com/ijl/orjson/archive/refs/tags/%{version}/orjson-%{version}.tar.gz
+Source:         https://pypi.io/packages/source/o/orjson/orjson-%{version}.tar.gz
 BuildRequires:  python3dist(setuptools)
+BuildRequires:  python-flit-core
+BuildRequires:  python-pip
+BuildRequires:  python-wheel
 
 BuildArch:      noarch
 
@@ -19,9 +22,10 @@ It serializes dataclass, datetime, numpy, and UUID instances natively.
 %autosetup -n orjson-%{version} -p1
 
 %build
-%py_build
+mkdir wheels
+pip wheel --wheel-dir wheels --no-deps --no-build-isolation --verbose .
 
 %install
-%py_install
+pip install --root=%{buildroot} --no-deps --verbose --ignore-installed --no-warn-script-location --no-index --no-cache-dir --find-links wheels wheels/*.whl
 
 %files
