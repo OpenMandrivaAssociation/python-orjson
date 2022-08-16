@@ -10,6 +10,9 @@ BuildRequires:  python3dist(setuptools)
 BuildRequires:  python-flit-core
 BuildRequires:  python-pip
 BuildRequires:  python-wheel
+BuildRequires:  python-maturin
+
+Requires: python-maturin
 
 BuildArch:      noarch
 
