@@ -5,7 +5,10 @@ Summary:        Fast, correct Python JSON library supporting dataclasses, dateti
 License:        Apache-2.0, MIT 
 Group:          Development/Languages/Python
 URL:            https://github.com/ijl/orjson/
-Source:         https://pypi.io/packages/source/o/orjson/orjson-%{version}.tar.gz
+Source0:         https://pypi.io/packages/source/o/orjson/orjson-%{version}.tar.gz
+Source1:        vendor.tar.xz
+Source2:        cargo_config
+
 BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(setuptools-rust)
 BuildRequires:  python-flit-core
@@ -23,7 +26,9 @@ It benchmarks as the fastest Python library for JSON and is more correct than th
 It serializes dataclass, datetime, numpy, and UUID instances natively.
 
 %prep
-%autosetup -n orjson-%{version} -p1
+%autosetup -a1 -n orjson-%{version}
+mkdir .cargo
+cp %{SOURCE2} .cargo/config
 
 %build
 mkdir wheels
