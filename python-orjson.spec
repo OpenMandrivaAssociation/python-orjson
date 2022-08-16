@@ -1,3 +1,4 @@
+%define _empty_manifest_terminate_build 0
 Name:           python-orjson
 Version:        3.7.12
 Release:        1
