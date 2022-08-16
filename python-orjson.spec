@@ -5,7 +5,8 @@ Summary:        Fast, correct Python JSON library supporting dataclasses, dateti
 License:        Apache-2.0, MIT 
 Group:          Development/Languages/Python
 URL:            https://github.com/ijl/orjson/
-Source0:         https://pypi.io/packages/source/o/orjson/orjson-%{version}.tar.gz
+Source0:        https://pypi.io/packages/source/o/orjson/orjson-%{version}.tar.gz
+# To update vendor. Cd to source dir, run in terminal as user "cargo vendor" (rust and cargo must be installed). Then compress vendor dir as .tar.xz
 Source1:        vendor.tar.xz
 Source2:        cargo_config
 
@@ -17,8 +18,6 @@ BuildRequires:  python-wheel
 BuildRequires:  python-maturin
 
 Requires: python-maturin
-
-BuildArch:      noarch
 
 %description
 orjson is a fast, correct JSON library for Python. 
@@ -38,3 +37,5 @@ pip wheel --wheel-dir wheels --no-deps --no-build-isolation --verbose .
 pip install --root=%{buildroot} --no-deps --verbose --ignore-installed --no-warn-script-location --no-index --no-cache-dir --find-links wheels wheels/*.whl
 
 %files
+%{python_sitearch}/orjson-%{version}.dist-info
+%{python_sitearch}/orjson/
