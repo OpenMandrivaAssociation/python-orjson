@@ -7,6 +7,7 @@ Group:          Development/Languages/Python
 URL:            https://github.com/ijl/orjson/
 Source:         https://pypi.io/packages/source/o/orjson/orjson-%{version}.tar.gz
 BuildRequires:  python3dist(setuptools)
+BuildRequires:  python3dist(setuptools-rust)
 BuildRequires:  python-flit-core
 BuildRequires:  python-pip
 BuildRequires:  python-wheel
