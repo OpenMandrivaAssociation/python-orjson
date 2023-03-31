@@ -1,7 +1,7 @@
 %define _empty_manifest_terminate_build 0
 Name:           python-orjson
 Version:        3.7.12
-Release:        1
+Release:        2
 Summary:        Fast, correct Python JSON library supporting dataclasses, datetimes, and numpy
 License:        Apache-2.0, MIT 
 Group:          Development/Languages/Python
