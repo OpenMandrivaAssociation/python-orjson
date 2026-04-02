@@ -1,3 +1,3 @@
 sources:
-  orjson-3.11.5.tar.gz: 315501ddc58d8019150b0fdbc7462795f0759420
-  vendor.tar.xz: 9df7e346ba4877c4fc752e580a45a0a8d728f886
+  python-orjson-3.11.8.tar.gz: cc7aab38732ebec89fb1edc4f9874e16eb3d78f2
+  python-orjson-3.11.8-vendor.tar.xz: 334c106913ee60df6c538fd199b89cecc5311e4f
