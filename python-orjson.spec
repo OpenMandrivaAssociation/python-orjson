@@ -3,7 +3,7 @@
 %define module orjson
 
 Name:		python-orjson
-Version:	3.11.8
+Version:	3.11.9
 Release:	1
 Summary:	Fast, correct Python JSON library supporting dataclasses, datetimes, and numpy
 License:	MPL-2.0 AND (Apache-2.0 OR MIT)
@@ -50,6 +50,8 @@ EOF
 
 %build -p
 export CARGO_HOME=$PWD/.cargo
+
+%build -a
 # sort out crate licenses
 %cargo_license_summary
 %{cargo_license} > LICENSES.dependencies
