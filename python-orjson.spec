@@ -4,7 +4,7 @@
 
 Name:		python-orjson
 Version:	3.11.9
-Release:	1
+Release:	2
 Summary:	Fast, correct Python JSON library supporting dataclasses, datetimes, and numpy
 License:	MPL-2.0 AND (Apache-2.0 OR MIT)
 Group:		Development/Languages/Python
