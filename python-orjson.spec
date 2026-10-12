@@ -21,7 +21,6 @@ BuildRequires:	python%{pyver}dist(flit-core)
 BuildRequires:	python%{pyver}dist(pip)
 BuildRequires:	python%{pyver}dist(wheel)
 BuildRequires:	python%{pyver}dist(maturin)
-BuildRequires:	rust-packaging
 
 Requires: python%{pyver}dist(maturin)
 
@@ -34,13 +33,13 @@ the standard json library or other third-party libraries.
 It serializes dataclass, datetime, numpy, and UUID instances natively.
 
 %prep -a
-tar xf %{SOURCE1}
+# The crates are already vendored, so this build does not need rust-packaging.
+tar -xf %{SOURCE1}
+mkdir -p .cargo
+cat > .cargo/config.toml << 'EOF'
+[net]
+offline = true
 
-# prep vendorered crates
-%cargo_prep -v vendor/
-
-# create .cargo/config file from vendoring output
-cat >> .cargo/config << EOF
 [source.crates-io]
 replace-with = "vendored-sources"
 
@@ -49,12 +48,14 @@ directory = "vendor"
 EOF
 
 %build -p
+export CARGO_NET_OFFLINE=true
 export CARGO_HOME=$PWD/.cargo
 
 %build -a
-# sort out crate licenses
-%cargo_license_summary
-%{cargo_license} > LICENSES.dependencies
+cargo tree --workspace --offline --edges no-build,no-dev,no-proc-macro \
+	--prefix none --format '{l}: {p}' \
+	| sed -e "s: ($(pwd)[^)]*)::g" -e 's: / :/:g' -e 's:/: OR :g' \
+	| sort -u > LICENSES.dependencies
 
 %files
 %doc README.md
